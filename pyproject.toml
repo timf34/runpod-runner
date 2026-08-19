@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "runpod-runner"
+version = "0.1.0"
+description = "rp: provision and drive RunPod GPU pods from the laptop (up / bootstrap / run / logs / down)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["requests>=2.28"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+rp = "rp.cli:main"
+
+[tool.setuptools]
+packages = ["rp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "live: talks to the real RunPod API (read-only); skipped unless RUNPOD_API_KEY is set",
+]

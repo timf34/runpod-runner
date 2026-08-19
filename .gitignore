@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+# never commit secrets or local pod state
+.env
+*.env
+config.toml
+.runpod-runner/

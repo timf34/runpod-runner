@@ -1,0 +1,10 @@
+# rp profile: current HuggingFace stack on the default image (runpod/pytorch:...-cu1281-torch280-ubuntu2404).
+# rp-min-cuda: 12.8
+# torch's latest wheels are built for a recent CUDA; the host driver's max CUDA (nvidia-smi header) must be >= that.
+torch
+transformers>=4.56
+accelerate
+huggingface_hub
+hf_transfer
+safetensors
+sentencepiece

@@ -1,0 +1,6 @@
+# rp profile: pinned vLLM 0.11 stack (vllm pins its own torch; do not add torch here).
+# rp-min-cuda: 12.8
+vllm==0.11.0
+transformers==4.57.3
+huggingface_hub
+hf_transfer

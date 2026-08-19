@@ -1,0 +1,11 @@
+# rp profile: the coherent older stack for hosts whose driver tops out at CUDA 12.4
+# (nvidia-smi header shows "CUDA Version: 12.4"). Pins taken from AttractorBench/TROUBLESHOOTING.md.
+# rp-min-cuda: 12.4
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0
+vllm==0.8.5.post1
+transformers==4.51.3
+tokenizers==0.21.4
+huggingface_hub==0.34.4
+accelerate
+hf_transfer
