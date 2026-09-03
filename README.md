@@ -89,6 +89,10 @@ Each file carries a `# rp-min-cuda: X.Y` header; `rp bootstrap` passes the highe
 (uploaded) or a repo-relative path on the pod; with neither `--req` nor `--profile`,
 `<repo>/requirements.txt` is installed if it exists.
 
+Pin `torch` in every requirements file (`torch==2.8.*` for driver CUDA 12.8): an unpinned `torch`
+resolves to the newest PyPI wheel, built for a newer CUDA than most RunPod hosts' drivers, and the
+sanity step then fails with "NVIDIA driver ... too old". The `hf-latest` profile pins it.
+
 ### Pushing from the pod without your GitHub token
 
 `rp bootstrap N --repo https://github.com/owner/repo --deploy-key` generates an ed25519 key **on

@@ -1,7 +1,10 @@
 # rp profile: current HuggingFace stack on the default image (runpod/pytorch:...-cu1281-torch280-ubuntu2404).
 # rp-min-cuda: 12.8
 # torch's latest wheels are built for a recent CUDA; the host driver's max CUDA (nvidia-smi header) must be >= that.
-torch
+# PINNED: unpinned `torch` on PyPI resolves to cu130 builds (2.14+), which fail on RunPod's common
+# driver-12.8 hosts ("The NVIDIA driver on your system is too old", cuda available: False). torch 2.8
+# is the last line built against cu128 by default. Raise this only on a host whose driver is >= 13.0.
+torch==2.8.*
 transformers>=4.56
 accelerate
 huggingface_hub

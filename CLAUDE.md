@@ -54,6 +54,11 @@ rp down <name>                                            # stop; rp start <name
   torch/vLLM wheel's CUDA. `rp bootstrap` prints it and fails with exit 3 if the chosen profile needs
   more; on a 12.4-driver host use `--profile vllm-cu124`. Never pip-upgrade packages into the image's
   system Python; use the venv `rp bootstrap` makes.
+- **Unpinned `torch` pulls a wheel newer than the driver** (2026-09-03, AttractorStatePrefillAttack): a
+  requirements file with a bare `torch` line resolved to torch 2.14 (cu130) on a driver-12.8 host, and the
+  sanity step failed with "NVIDIA driver ... too old (found version 12080)", cuda available: False. Always
+  pin torch to a line built for the host driver (`torch==2.8.*` for CUDA 12.8; the `hf-latest` profile now
+  does). The bootstrap error message says this too.
 - **pkill over ssh kills your own ssh shell** if the pattern matches the command line you are running.
   Use `pkill -f "[p]attern"` or better `rp kill <name> --job <job>` (kills the process group + tmux).
 - **tmux session names** cannot contain `.` or `:`; `rp` validates `--job` accordingly.

@@ -119,7 +119,7 @@ step "sanity"
 if [ "${RP_SKIP_SANITY:-0}" = "1" ]; then
   echo "skipped (RP_SKIP_SANITY=1)"
 else
-  python - <<'PY' || die "CUDA sanity check failed (torch cannot see the GPU)" 6
+  python - <<'PY' || die "CUDA sanity check failed (torch cannot see the GPU). If the line above says torch was built for a CUDA newer than the driver max CUDA printed earlier, the requirements pulled a too-new wheel: pin torch to a release built for the driver (e.g. torch==2.8.* for CUDA 12.8; unpinned torch on PyPI now resolves to cu130 builds) and re-run bootstrap" 6
 import importlib.util, sys
 if importlib.util.find_spec("torch") is None:
     print("torch not installed -- skipping CUDA check"); sys.exit(0)
